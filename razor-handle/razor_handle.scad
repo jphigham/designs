@@ -1,3 +1,5 @@
+// -*- mode: SCAD; tab-width: 4; -*-
+
 /*
  * kv2_pencilsPot.scad
  * 
@@ -38,12 +40,12 @@ use <knurledFinishLib_v2.scad>
 
 /* ********** User Parameters ***************************************************** */
 
-pot_height		= 120;
-pot_diameter	= 80;
+pot_height		= 85; // 4*4.25; //85;
+pot_diameter	= 13.5;
 
-knurl_width		= 6;
-knurl_height	= 8;
-knurl_depth		= 1.5;
+knurl_width		= 3;
+knurl_height	= 4.25;
+knurl_depth		= 0.5;
 
 ends_smoothing	= knurl_height/2;
 surface_smooth	= 50;
@@ -54,8 +56,8 @@ test_height		= 8;
 
 /* ********** From the console echoed by the library ****************************** */
 
-	max_diameter	= 82.25;
-	min_diameter	= 79.25;
+	max_diameter	= 14.25;
+	min_diameter	= 13.25;
 
 
 /* ********** Computed Parameters ************************************************* */
@@ -69,12 +71,36 @@ test_height		= 8;
 /* ********** Modules ************************************************************* */
 
 //	pencils_pot();
-//	print_test();
+razor_handle();
+//  print_test();
 //	knurl_help();
 
 
 /* ********** Code **************************************************************** */
+module razor_handle()
+{
+    difference()
+    {
+        scale([s_outer,s_outer,1])
+        knurl(	k_cyl_hg = pot_height,
+                    k_cyl_od = pot_diameter,
+                    knurl_wd = knurl_width,
+                    knurl_hg = knurl_height,
+                    knurl_dp = knurl_depth,
+                    e_smooth = ends_smoothing,
+                    s_smooth = surface_smooth);
+        
+        translate([0,0,pot_height-12])
+        cylinder(h=12,r=5.4,$fs=0.1);
+        
+        translate([0,0,pot_height-2.5])
+        cylinder(h=2.5,r=5.9,$fs=0.1);
+        
+        //translate([0,-pot_diameter,pot_height/2])
+		//cube(size=[2*pot_diameter,2*pot_diameter,2*pot_height], center=true);
 
+    }
+}
 module pencils_pot()
 {
 	difference()
@@ -130,4 +156,3 @@ module print_test()
 		}
 	}
 }
-
