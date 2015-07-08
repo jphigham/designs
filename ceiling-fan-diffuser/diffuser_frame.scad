@@ -21,14 +21,27 @@ slit_spacing_multiplier = 2.2;
 glass_thickness = 1.5;
 glass_offset = glass_thickness*2;
 
-frame_assembly();
-// frame_side();
-// frame_end();
-// corner();
-// corner_mt1();
-// corner_mt2();
-// clip();
-// slit();
+part = "assembled"; // [assembled, side:frame_side, end:frame_end, mt1:corner_mt1, mt2:corner_mt2, clip, slit]
+
+print_part();
+
+module print_part() {
+    if (part == "assembled") {
+	frame_assembly();
+    } else if (part == "side") {
+	frame_side();
+    } else if (part == "end") {
+	frame_end();
+    } else if (part == "mt1") {
+	corner_mt1();
+    } else if (part == "mt2") {
+	corner_mt2();
+    } else if (part == "clip") {
+	clip();
+    } else if (part == "slit") {
+	slit();
+    }
+}
 
 module frame_assembly() {
     translate([0, frame_width/2,0])
