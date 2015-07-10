@@ -1,7 +1,7 @@
 Shave cream / soap dish / razor hooks for shower caddy
 ===============
 
-![Image](img/upper_caddy.png)
+![Image](img/shave_cream_dish.png)
 
 Description
 --------

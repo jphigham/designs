@@ -11,7 +11,7 @@ Various designs
 
 * [shower-caddies](shower-caddies/)
 --------
-[![Image](shower-caddies/img/upper_caddy.png)](shower-caddies/)
+[![Image](shower-caddies/img/shower-caddies.png)](shower-caddies/)
 
 * [toilet-lid-bumper](toilet-lid-bumper/)
 --------
