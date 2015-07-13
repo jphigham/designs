@@ -8,16 +8,17 @@ overlap = 0.2;
 lower_wire_spacing = 89/5; //17.85;
 lower_wire_width = 70;
 lower_wire_wires = 6;
+lower_wire_diameter = 3;
 
 soap_dish_length = 100;
-soap_dish_width = 70;
+soap_dish_width = 65;
 soap_dish_round = 15;
 soap_dish_height = 10;
 soap_dish_carve_factor = 4;
 
 honeycomb_rows = 12;
 honeycomb_cols = 15;
-honeycomb_cell = 10;
+honeycomb_cell = lower_wire_spacing / 2;
 honeycomb_inner = 1.5;
 
 part = "dish"; // [dish]
@@ -69,9 +70,9 @@ module soap_dish() {
 			dish_body();
 			intersection() {
 				dish_blank();
-				wire_shroud(lower_wire_spacing,lower_wire_wires,lower_wire_width);
+				wire_shroud(lower_wire_spacing,lower_wire_wires,lower_wire_width,lower_wire_diameter);
 			}
 		}
-		wire_frame(lower_wire_spacing,lower_wire_wires,lower_wire_width);
+		wire_frame(lower_wire_spacing,lower_wire_wires,lower_wire_width,lower_wire_diameter);
 	}
 }

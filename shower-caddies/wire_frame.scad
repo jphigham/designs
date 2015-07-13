@@ -14,16 +14,20 @@ module wire_shroud(spacing,wires,width,diameter=default_wire_diameter)
 	}
 }
 
-module wire_frame(spacing,wires,width,diameter=default_wire_diameter) {
+module wire_frame(spacing,wires,width,diameter=default_wire_diameter,hull=true) {
 	translate([-(wires-1)*spacing/2,0,0])
 	for (w = [1:wires]) {
 		translate([(w-1)*spacing,0,0])
 		rotate([90,0,0])
 		translate([0,diameter/2,0])
-		hull() {
+		if (hull) {
+			hull() {
+				cylinder(r=diameter/2,h=width,center=true,$fs=0.1);
+				translate([0,-diameter/2,0])
+				cube([diameter,diameter,width],center=true);
+			}
+		} else {
 			cylinder(r=diameter/2,h=width,center=true,$fs=0.1);
-			translate([0,-diameter/2,0])
-			cube([diameter,diameter,width],center=true);
 		}
 	}
 }
